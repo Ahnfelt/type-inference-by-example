@@ -20,6 +20,7 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 * Type classes
 * Functional dependencies
 * Field constraints
+* Higher ranked types
 * Named arguments
 * Optional arguments
 * Varargs
