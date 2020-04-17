@@ -117,6 +117,6 @@ And we’re done.
 
 ## Demo
 
-Now that we have the first version of our type inference, it’s time to see it in action. [View and run the code so far here](code.scala).
+Now that we have the first version of our type inference, it’s time to see it in action. [View and run the code so far here](Inference.scala).
 
 Stay tuned for [part 6](../part6/article.md), where we’ll extend the type inference to a bigger language and insert the missing types into the syntax tree.
