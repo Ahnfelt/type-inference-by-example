@@ -1,6 +1,8 @@
 # Type Inference by Example
 A series of down-to-earth, code-oriented articles on implementing type inference.
 
+# Chapters
+
 ## Type constraints? Substitutions? What?
 * [Part 1](part1/article.md)
 * [Part 2](part2/article.md)
