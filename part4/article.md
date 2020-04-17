@@ -53,9 +53,9 @@ We’ll choose a substitution where each type variable is initially substituted 
 
 The unification itself is simple:
 
-> Given two TConstructors, check that their name is equal and that they have the same number of type parameters. Then do a pointwise unification of the type arguments.
-> Given a TVariable and another type, check if the type variable has been bound to something else than itself in the substitution. If so, unify whatever it’s bound to with the other type. 
-> Otherwise, update the unification by binding the type variable to the other type.
+* Given two TConstructors, check that their name is equal and that they have the same number of type parameters. Then do a pointwise unification of the type arguments.
+* Given a TVariable and another type, check if the type variable has been bound to something else than itself in the substitution. If so, unify whatever it’s bound to with the other type. 
+* Otherwise, update the unification by binding the type variable to the other type.
 
 When binding a type variable, we must perform an occurs check to avoid constructing an infinite type such as `$1 := Array<$1>`.
 
