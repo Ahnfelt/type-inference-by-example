@@ -17,4 +17,4 @@ Type classes, field constraints, ...
 
 # Contact
 
-I'm Joakim Ahnfelt-Rønne, MSc Computer Science. I work with functional programming and am a co-organizer of a meetup about it in Copenhagen. In my spare time, I work on programming languages -- and apparently, blog.
+I'm Joakim Ahnfelt-Rønne, MSc Computer Science. I work with functional programming and I co-organize a meetup about it in Copenhagen. In my spare time, I work on programming languages -- and apparently, blog about it.
