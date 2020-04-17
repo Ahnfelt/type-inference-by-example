@@ -89,7 +89,7 @@ That’s it for the inferType function:
 
 ## Finishing up
 
-The type we get back from inferType is likely a type variable at this point. In order to find out the concrete type, we’ll need to solve the constraints and then apply the substitution to the type.
+The type we get back from `inferType` is likely a type variable at this point. In order to find out the concrete type, we’ll need to solve the constraints and then apply the substitution to the type.
 
 Since we only have equality constraints right now, we can simply use unification we developed in part 4 to solve them:
 
