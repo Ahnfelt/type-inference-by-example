@@ -80,7 +80,7 @@ case EApply(e1, e2) =>
     t3
 ```
 
-That’s it for the inferType function:
+That’s it for the `inferType` function:
 
 ```scala
 }
