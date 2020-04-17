@@ -8,9 +8,9 @@ function f(x) {
 } 
 ```
 
-Since there’s no type annotation for x, and no explicit return type, we'll have to infer those.
+Since there’s no type annotation for `x`, and no explicit return type, we'll have to infer those.
 
-For this, we can generate two fresh type variables $1 and $2, and add those to our syntax tree:
+For this, we can generate two fresh type variables `$1` and `$2`, and add those to our syntax tree:
 
 ```js
 function f(x : $1) : $2 {
@@ -20,7 +20,7 @@ function f(x : $1) : $2 {
 
 > What are type variables? They are integers that act as placeholders for types that we don’t yet know. During type inference, they will be replaced with other types and thus disappear from the syntax tree.
 
-For the expression x * 2, we know the type of * : (Int, Int) => Int, so we check x and 2 both with the expected type Int. We know that x : $1 and 2 : Int, so we get the type constraints:
+For the expression `x * 2`, we know the type of `* : (Int, Int) => Int`, so we check `x` and `2` both with the expected type `Int`. We know that `x : $1` and `2 : Int`, so we get the type constraints:
 
 ```
 $1 == Int
@@ -29,7 +29,7 @@ Int == Int
 
 > What are type constraints? They are a way to record things we discover about types and their relations to each other, as we go through the type inference. An equality constraint may literally be represented in code as a pair of types.
 
-For the statement return x * 2; we know from the type of * that x * 2 returns an Int, and from return that this must be the return type, so we get the constraint:
+For the statement `return x * 2;` we know from the type of `*` that `x * 2` returns an `Int`, and from `return` that this must be the return type, so we get the constraint:
 
 ```
 $2 == Int
