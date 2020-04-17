@@ -1,7 +1,7 @@
 # Type Inference by Example
 A series of down-to-earth, code-oriented articles on implementing type inference.
 
-This series is also available on [Medium](https://medium.com/@joakim.ahnfelt/type-inference-by-example-793d83f98382).
+*This series is also available on [Medium](https://medium.com/@joakim.ahnfelt/type-inference-by-example-793d83f98382).*
 
 # Chapters
 
