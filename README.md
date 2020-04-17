@@ -6,23 +6,19 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 * [Part 2](part2/article.md)
 * [Part 3](part3/article.md)
 
-## Implementing generic types
+## Inferring generic types
 * [Part 4](part4/article.md)
 * [Part 5](part5/article.md)
 * [Part 6](part6/article.md)
 * [Part 7](part7/article.md)
 
-## Type classes
-To be written
-
-## Field constriants
-To be written
-
-## Higher ranked types
-To be written
-
-## More?
-
+## Upcoming
+* Type classes
+* Functional dependencies
+* Field constraints
+* Named arguments
+* Optional arguments
+* Varargs
 
 # Contact
 
