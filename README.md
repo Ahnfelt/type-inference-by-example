@@ -26,6 +26,6 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 
 # Contact
 
-I'm Joakim Ahnfelt-Rønne, MSc Computer Science (University of Copenhagen). I work with functional programming in the industry and I co-organize a meetup about it in Copenhagen. In my spare time, I work on programming languages - and apparently, blog about it.
+I'm Joakim Ahnfelt-Rønne, MSc Computer Science (University of Copenhagen). I work with functional programming in the industry and I co-organize a meetup about it in Copenhagen. In my spare time, I work on programming languages - and apparently, write about it.
 
 Catch me on https://discord.gg/e3B3hW - it's a very nice community about programming language design. I'm @ahnfelt.
