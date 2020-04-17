@@ -1,7 +1,5 @@
 # Type Inference by Example
-A series of down-to-earth articles on implementing type inference.
-
-> We won't be going to Greece in this series. No σ, no τ, no Γ, no feta, no gyros. I recommend visiting though, it's very tasty.
+A series of down-to-earth, code-oriented articles on implementing type inference.
 
 * [Part 1](part1/article.md)
 * [Part 2](part2/article.md)
