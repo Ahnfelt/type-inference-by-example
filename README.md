@@ -12,8 +12,17 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 * [Part 6](part6/article.md)
 * [Part 7](part7/article.md)
 
-## More to come
-Type classes, field constraints, ... 
+## Type classes
+To be written
+
+## Field constriants
+To be written
+
+## Higher ranked types
+To be written
+
+## More?
+
 
 # Contact
 
