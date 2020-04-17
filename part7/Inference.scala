@@ -238,7 +238,7 @@ class Inference() {
     def freeInType(t : Type) : SortedSet[Int] = t match {
         case TVariable(i) if substitution(i) != TVariable(i) => freeInType(substitution(i))
         case TVariable(i) => SortedSet(i)
-        case TConstructor(_, generics) => generics.map(freeInType).fold(SortedSet()) { _ ++ _ }
+        case TConstructor(_, generics) => generics.map(freeInType).fold(SortedSet[Int]()) { _ ++ _ }
     }
 
     def freeInGenericType(t : GenericType) : SortedSet[Int] = {
