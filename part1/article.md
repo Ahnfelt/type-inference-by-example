@@ -1,5 +1,8 @@
 # Type Inference by Example, Part 1
 
+![Diagram](image.png)
+*Type inference, in a nutshell.*
+
 If you’re implementing a programming language, you might be pondering how to do type inference. Instead of going through the theory, we’ll go through some examples to build an intuition for how it works, and finally see how to put that into code.
 
 Consider the following function:
