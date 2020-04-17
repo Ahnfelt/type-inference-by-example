@@ -1,6 +1,6 @@
 # Type Inference by Example, Part 2
 
-![Diagram](image.png)
+![Diagram](image.png)  
 *Type inference for the empty array.*
 
 Continuing where we left off in [part 1](../part1/article.md), let’s look at a more advanced example that uses local variables and type constructors:

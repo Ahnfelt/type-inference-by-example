@@ -1,6 +1,6 @@
 # Type Inference by Example, Part 3
 
-![Diagram](image.png)
+![Diagram](image.png)  
 *Inferring types for generic calls.*
 
 Continuing where we left off in [part 2](../part2/article.md), we’ll now consider calling a generic function:

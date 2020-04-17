@@ -1,6 +1,6 @@
 # Type Inference by Example, Part 4
 
-![Diagram](image.png)
+![Diagram](image.png)  
 *Using unification to turn each equality constraint into a substitution.*
 
 Continuing where we left off in [part 3](../part3/article.md), let’s take a look at unification.
