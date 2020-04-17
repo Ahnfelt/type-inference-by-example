@@ -1,6 +1,6 @@
 # Type Inference by Example, Part 7
 
-![Diagram](image.png)
+![Diagram](image.png)  
 *Being written*
 
 ## Demo
