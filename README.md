@@ -16,6 +16,8 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 * [Part 6](part6/article.md)
 * [Part 7](part7/article.md)
 
+View and run the final code for this chapter [here](part7/Inference.scala).
+
 ## Upcoming
 * Type classes
 * Functional dependencies
