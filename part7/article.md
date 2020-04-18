@@ -3,9 +3,6 @@
 ![Diagram](image.png)
 *At the end of this article, we can infer generic types like these.*
 
-
----
-
 Continuing where we left off in [part 6](../part6/article.md), let's add in mutually recursive functions with generics.
 
 Consider the following example:
@@ -252,7 +249,6 @@ def freeInEnvironment(
 ```
 
 And we're done.
-
 
 ## Demo
 
