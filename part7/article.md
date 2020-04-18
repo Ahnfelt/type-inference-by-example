@@ -63,7 +63,7 @@ case class EVariable(
 
 ## Inferring the generic types
 
-Earlier in the series, our environment looked like this: Map[String, Type]. We're going to change Type to GenericType, so that variables can be generic in our environment. Now our infer function looks like this:
+Earlier in the series, our environment looked like this: `Map[String, Type]`. We're going to change `Type` to `GenericType`, so that variables can be generic in our environment. Now our infer function looks like this:
 
 ```scala
 def infer(
@@ -105,7 +105,7 @@ The first thing we need to do is to create an environment `recursiveEnvironment`
 
 Now the functions - at least those without user supplied type annotations - have an ordinary type with type variables in them. We want to find out which of these type variables we can convert into type parameters to make the function generic. Before we do that, we solve all the outstanding type constraints to update our substitution, so we call `solveConstraints()`. 
 
-After that, we call generalize on each of the functions that don't have a user supplied type annotation. This finds out which type variables are safe to turn into type parameters. Now we have our `GenericType`s for the functions.
+After that, we call `generalize` on each of the functions that don't have a user supplied type annotation. This finds out which type variables are safe to turn into type parameters, and returns our `GenericType`s for the functions.
 
 The only thing that's missing is to put these into an environment for inferring the body, where these functions are in scope.
 
