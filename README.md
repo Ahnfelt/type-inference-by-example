@@ -10,7 +10,7 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 * [Part 2](part2/article.md)
 * [Part 3](part3/article.md)
 
-*There's no code for this chapter.*
+*This is just an introduction, so there's no code for this chapter.*
 
 ## Inferring generic types
 * [Part 4](part4/article.md)
