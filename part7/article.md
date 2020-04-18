@@ -24,9 +24,9 @@ case class EFunctions(
 
 The functions is a list of functions that may call each other, and they are in scope in body.
 
-The next thing is that these functions may be generic - that is, they may have a type parameter list <…>, as in the classic map function:
+The next thing is that these functions may be generic - that is, they may have a type parameter list `<…>`, as in the classic `map` function:
 
-```scala
+```
 function map<A, B>(array : Array<A>, f : A => B) : Array<B>
 ```
 
