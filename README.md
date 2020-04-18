@@ -10,7 +10,7 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 * [Part 2](part2/article.md)
 * [Part 3](part3/article.md)
 
-There's no code for this chapter.
+*There's no code for this chapter.*
 
 ## Inferring generic types
 * [Part 4](part4/article.md)
@@ -18,7 +18,7 @@ There's no code for this chapter.
 * [Part 6](part6/article.md)
 * [Part 7](part7/article.md)
 
-View and run the final code for this chapter [here](https://scastie.scala-lang.org/Ahnfelt/6suj8tM3S8aCofyzJVObsA/6).
+*View and run the final code for this chapter [here](https://scastie.scala-lang.org/Ahnfelt/6suj8tM3S8aCofyzJVObsA/6).*
 
 ## Upcoming
 * Type classes
