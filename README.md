@@ -17,8 +17,9 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 * [Part 5](part5/article.md)
 * [Part 6](part6/article.md)
 * [Part 7](part7/article.md)
+* [Slides](talk-mfk/slides.pdf)
 
-> View and run the final code for this chapter [here](https://scastie.scala-lang.org/Ahnfelt/6suj8tM3S8aCofyzJVObsA/6).
+> Final code for this chapter [here](talk-mfk/Inference.scala).
 
 ## Upcoming
 * Type classes
