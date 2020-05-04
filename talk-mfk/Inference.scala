@@ -81,9 +81,6 @@ case class TVariable(index : Int) extends Type {
     override def toString = s"$$$index"
 }
 
-sealed abstract class Constraint
-case class CEquality(t1 : Type, t2 : Type) extends Constraint
-
 
 /////////////////////////////////
 // Type inference
