@@ -38,7 +38,7 @@ class Emitter() {
         case EInt(value) =>
             List(value.toString)
         case EString(value) =>
-            List("\"", value.flatMap {
+            List("\"", value.flatMap[Char] {
                 case '"' => "\\\""
                 case '\\' => "\\\\"
                 case c if c < 0x10 => "\\u000" + c.toHexString
@@ -51,7 +51,7 @@ class Emitter() {
             List("(", emit(before), ",\n", emit(after), ")")
     }) : List[String]).mkString
 
-    def escapeName(name : String) = {
+    def escapeName(name : String) : String = {
         name.flatMap {
             case c if c >= 'a' && c <= 'z' => c.toString
             case c if c >= 'A' && c <= 'Z' => c.toString
