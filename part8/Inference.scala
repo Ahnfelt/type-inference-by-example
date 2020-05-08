@@ -1,5 +1,3 @@
-package com.github.ahnfelt.alua.stuff.byexample6
-
 import scala.collection.immutable.{IntMap, SortedSet}
 import scala.collection.mutable.ArrayBuffer
 

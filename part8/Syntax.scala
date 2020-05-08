@@ -1,5 +1,3 @@
-package com.github.ahnfelt.alua.stuff.byexample6
-
 sealed abstract class Expression
 
 case class EFunctions(

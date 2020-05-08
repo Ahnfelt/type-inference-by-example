@@ -1,6 +1,3 @@
-package com.github.ahnfelt.alua.stuff.byexample6
-
-
 object Main {
 
     val initialEnvironment =
