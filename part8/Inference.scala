@@ -221,7 +221,7 @@ class Inference() {
 
     def determinedBy(determined : SortedSet[Int]) : SortedSet[Int] = {
         val newDetermined = traitConstraints.collect {
-            case TraitConstraint(_, TConstructor(_, first::rest)) =>
+            case TraitConstraint(_, TConstructor(_, first :: rest)) =>
                 val firstFree = substitution.freeInType(first)
                 if(!firstFree.subsetOf(determined)) SortedSet[Int]() else {
                     rest.map(substitution.freeInType).fold(SortedSet[Int]()) { _ ++ _ }
