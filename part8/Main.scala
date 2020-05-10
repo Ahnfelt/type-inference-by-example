@@ -26,6 +26,11 @@ object Main {
                 "Number_Int" -> GenericType(List(), List(), TConstructor("Number", List(TConstructor("Int")))),
                 "Number_Float" -> GenericType(List(), List(), TConstructor("Number", List(TConstructor("Float")))),
                 "Order_Int" -> GenericType(List(), List(), TConstructor("Order", List(TConstructor("Int")))),
+                "Order_Array" -> GenericType(
+                    List("T"),
+                    List(TConstructor("Order", List(TConstructor("T")))),
+                    TConstructor("Order", List(TConstructor("Array", List(TConstructor("T")))))
+                ),
             ).toMap
 
     def infer(expression : Expression) : Expression = {
@@ -228,7 +233,7 @@ object Main {
         EInt(42)
     )
 
-    // function f(x, y) { return x <= y; }
+    // function f(x, y) { return [x] <= [y]; }
     // let g = f
     // g(5, 7)
     val e11 = EFunctions(
@@ -237,8 +242,8 @@ object Main {
                 None,
                 ELambda(List(Parameter("x", None), Parameter("y", None)), None,
                     EApply(EVariable("<"), List(
-                        EVariable("x"),
-                        EVariable("y")
+                        EArray(None, List(EVariable("x"))),
+                        EArray(None, List(EVariable("y")))
                     ))
                 )
             )
