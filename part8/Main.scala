@@ -234,8 +234,9 @@ object Main {
     )
 
     // function f(x, y) { return [x] <= [y]; }
+    // f(1, 2);
     // let g = f
-    // g(5, 7)
+    // g(3, 4)
     val e11 = EFunctions(
         List(
             GenericFunction("f",
@@ -248,8 +249,11 @@ object Main {
                 )
             )
         ),
-        ELet("g", None, EVariable("f"),
-            EApply(EVariable("g"), List(EInt(5), EInt(7)))
+        ESemicolon(
+            EApply(EVariable("f"), List(EInt(1), EInt(2))),
+            ELet("g", None, EVariable("f"),
+                EApply(EVariable("g"), List(EInt(3), EInt(4)))
+            )
         )
     )
 
