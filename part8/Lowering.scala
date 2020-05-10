@@ -1,13 +1,13 @@
 class Lowering() {
 
-    private val emptySubstitution = new Substitution()
+    private def traitKey(t : Type) = new Substitution().traitKey(t)
 
     def lower(expression : Expression) : Expression = expression match {
         case EFunctions(functions, body) =>
             val newFunctions = functions.map { case GenericFunction(name, typeAnnotation, lambda) =>
                 val Some(GenericType(typeParameters, traits, TConstructor(_, parameterAndReturnTypes))) = typeAnnotation
                 val ELambda(parameters, lambdaReturnType, body) = lambda
-                val extraParameters = traits.map { p => Parameter(emptySubstitution.traitKey(p).get, Some(p)) }
+                val extraParameters = traits.map { p => Parameter(traitKey(p).get, Some(p)) }
                 val newParameterAndReturnTypes = extraParameters.map(_.typeAnnotation.get) ++ parameterAndReturnTypes
                 val newTypeAnnotation = GenericType(
                     typeParameters,
@@ -28,7 +28,7 @@ class Lowering() {
                     Parameter("_p" + i, Some(t))
                 }
                 val extraArguments = traits.map { p =>
-                    EVariable(emptySubstitution.traitKey(p).get, List(), List(), Some(p))
+                    EVariable(traitKey(p).get, List(), List(), Some(p))
                 }
                 ELambda(parameters, Some(parametersAndReturnType.last), EApply(
                     EVariable(name, generics, traits),
@@ -37,7 +37,7 @@ class Lowering() {
             }
         case e@EApply(EVariable(_, _, traits, _), arguments) =>
             val extraArguments = traits.map { p =>
-                EVariable(emptySubstitution.traitKey(p).get, List(), List(), Some(p))
+                EVariable(traitKey(p).get, List(), List(), Some(p))
             }
             e.copy(arguments = extraArguments ++ e.arguments.map(lower))
         case EApply(function, arguments) =>
