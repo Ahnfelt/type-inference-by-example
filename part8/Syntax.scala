@@ -19,7 +19,8 @@ case class EApply(
 case class EVariable(
     name : String,
     generics : List[Type] = List(),
-    traits : List[Type] = List()
+    traits : List[Type] = List(),
+    typeAnnotation : Option[Type] = None
 ) extends Expression
 
 case class ELet(

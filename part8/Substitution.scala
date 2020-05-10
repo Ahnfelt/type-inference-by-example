@@ -55,10 +55,11 @@ class Substitution(private var typeVariables : IntMap[Type] = IntMap()) {
             val newArguments = arguments.map(substituteExpression)
             EApply(newFunction, newArguments)
 
-        case EVariable(name, generics, traits) =>
+        case EVariable(name, generics, traits, typeAnnotation) =>
             val newGenerics = generics.map(substitute)
             val newTraits = traits.map(substitute)
-            EVariable(name, newGenerics, newTraits)
+            val newTypeAnnotation = typeAnnotation.map(substitute)
+            EVariable(name, newGenerics, newTraits, newTypeAnnotation)
 
         case ELet(name, typeAnnotation, value, body) =>
             val newTypeAnnotation = typeAnnotation.map(substitute)

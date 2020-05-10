@@ -40,8 +40,9 @@ object Main {
 
     def printInfer(expression : Expression) : String = {
         try {
-            val e = infer(expression)
-            e.toString + "\n\n" + new Emitter().emit(e)
+            val e1 = infer(expression)
+            val e2 = new Lowering().lower(e1)
+            e1.toString + "\n\n" + e2.toString + "\n\n" + new Emitter().emit(e2)
         } catch {
             case error : TypeError => error.message
         }

@@ -73,7 +73,7 @@ class Inference() {
             }
             EApply(newFunction, newArguments)
 
-        case EVariable(name, generics, traits) =>
+        case EVariable(name, generics, traits, typeAnnotation) =>
             if(traits.nonEmpty) throw TypeError("Explicit dictionary passing not allowed: " + name)
             val genericType = environment.getOrElse(name,
                 throw TypeError("Variable not in scope: " + name)
@@ -92,7 +92,8 @@ class Inference() {
                 for((t, v) <- generics.zip(newGenerics)) substitution.unify(t, v)
             }
             substitution.unify(expectedType, variableType)
-            EVariable(name, newGenerics, newTraits)
+            for(t <- typeAnnotation) substitution.unify(t, variableType)
+            EVariable(name, newGenerics, newTraits, Some(variableType))
 
         case ELet(name, typeAnnotation, value, body) =>
             val newTypeAnnotation = typeAnnotation.getOrElse(substitution.freshTypeVariable())
