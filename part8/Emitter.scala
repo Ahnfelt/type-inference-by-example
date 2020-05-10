@@ -14,7 +14,7 @@ class Emitter() {
             }.mkString
             List("function() {\n", functionCode, "\nreturn ", emit(body), "\n}()")
         case ELambda(parameters, _, body) =>
-            List("(", parameters.map(_.name).map(escapeName).mkString(", "), ") => ", emit(body))
+            List("((", parameters.map(_.name).map(escapeName).mkString(", "), ") => ", emit(body), ")")
         case EVariable(name, _, traits, _) =>
             List(escapeName(name))
         case EApply(function, arguments) =>

@@ -228,9 +228,29 @@ object Main {
         EInt(42)
     )
 
+    // function f(x, y) { return x <= y; }
+    // let g = f
+    // g(5, 7)
+    val e11 = EFunctions(
+        List(
+            GenericFunction("f",
+                None,
+                ELambda(List(Parameter("x", None), Parameter("y", None)), None,
+                    EApply(EVariable("<"), List(
+                        EVariable("x"),
+                        EVariable("y")
+                    ))
+                )
+            )
+        ),
+        ELet("g", None, EVariable("f"),
+            EApply(EVariable("g"), List(EInt(5), EInt(7)))
+        )
+    )
+
     def main(args : Array[String]) : Unit = {
         println(printInfer(
-            e10
+            e11
         ))
     }
 
