@@ -46,7 +46,7 @@ object Main {
     def printInfer(expression : Expression) : String = {
         try {
             val e1 = infer(expression)
-            val e2 = new Lowering().lower(e1)
+            val e2 = new Lowering(initialEnvironment).lower(e1)
             e1.toString + "\n\n" + e2.toString + "\n\n" + new Emitter().emit(e2)
         } catch {
             case error : TypeError => error.message

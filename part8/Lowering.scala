@@ -1,4 +1,4 @@
-class Lowering() {
+class Lowering(environment : Map[String, GenericType]) {
 
     private def traitKey(t : Type) = new Substitution().traitKey(t)
 
@@ -27,18 +27,14 @@ class Lowering() {
                 val parameters = parametersAndReturnType.init.zipWithIndex.map { case (t, i) =>
                     Parameter("_p" + i, Some(t))
                 }
-                val extraArguments = traits.map { p =>
-                    EVariable(traitKey(p).get, List(), List(), Some(p))
-                }
+                val extraArguments = buildTraitArguments(traits)
                 ELambda(parameters, Some(parametersAndReturnType.last), EApply(
                     EVariable(name, generics, traits),
                     extraArguments ++ parameters.map { p => EVariable(p.name, List(), List(), p.typeAnnotation) }
                 ))
             }
-        case e@EApply(EVariable(_, _, traits, _), arguments) =>
-            val extraArguments = traits.map { p =>
-                EVariable(traitKey(p).get, List(), List(), Some(p))
-            }
+        case e@EApply(EVariable(_, _, traits, _), _) =>
+            val extraArguments = buildTraitArguments(traits)
             e.copy(arguments = extraArguments ++ e.arguments.map(lower))
         case EApply(function, arguments) =>
             EApply(lower(function), arguments.map(lower))
@@ -56,6 +52,16 @@ class Lowering() {
             EArray(itemType, items.map(lower))
         case ESemicolon(before, after) =>
             ESemicolon(lower(before), lower(after))
+    }
+
+    private def buildTraitArguments(traits : List[Type]) : List[Expression] = {
+        traits.map { p =>
+            val arguments = buildTraitArguments(traitKey(p).flatMap(environment.get).toList.flatMap(_.traits))
+            val variable = EVariable(traitKey(p).get, List(), List(), Some(p))
+            if(arguments.isEmpty) variable else {
+                EApply(variable, arguments)
+            }
+        }
     }
 
 }
