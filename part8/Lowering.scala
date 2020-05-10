@@ -57,7 +57,9 @@ class Lowering(environment : Map[String, GenericType]) {
     private def buildTraitArguments(traits : List[Type]) : List[Expression] = {
         traits.map { p =>
             val arguments = buildTraitArguments(traitKey(p).flatMap(environment.get).toList.flatMap(_.traits))
-            val variable = EVariable(traitKey(p).get, List(), List(), Some(p))
+            val variable = EVariable(traitKey(p).get, List(), List(), None)
+            // TODO: Type, possibly with arguments
+            // TODO: Order_A vs Order_T
             if(arguments.isEmpty) variable else {
                 EApply(variable, arguments)
             }
