@@ -55,11 +55,24 @@ class Lowering(environment : Map[String, GenericType]) {
     }
 
     private def buildTraitArguments(traits : List[Type]) : List[Expression] = {
+        val inference = new Inference()
         traits.map { p =>
-            val arguments = buildTraitArguments(traitKey(p).flatMap(environment.get).toList.flatMap(_.traits))
-            val variable = EVariable(traitKey(p).get, List(), List(), None)
-            // TODO: Type, possibly with arguments
-            // TODO: Order_A vs Order_T
+            var newGenerics = List[Type]()
+            val newTraits = traitKey(p).flatMap(environment.get).toList.flatMap { genericType =>
+                val freshTypeVariables = genericType.generics.map(_ => inference.substitution.freshTypeVariable())
+                val instantiation = genericType.generics.zip(freshTypeVariables).toMap
+                inference.substitution.unify(p, inference.instantiate(instantiation, genericType.uninstantiatedType))
+                newGenerics = freshTypeVariables.map(inference.substitution.substitute)
+                genericType.traits.map(t =>
+                    inference.substitution.substitute(inference.instantiate(instantiation, t))
+                )
+            }
+            val newReturnType = inference.substitution.substitute(p)
+            val newType =
+                if(newTraits.isEmpty) newReturnType
+                else TConstructor(s"Function${newTraits.size}", newTraits ++ List(newReturnType))
+            val arguments = buildTraitArguments(newTraits)
+            val variable = EVariable(traitKey(p).get, newGenerics, newTraits, Some(newType))
             if(arguments.isEmpty) variable else {
                 EApply(variable, arguments)
             }
