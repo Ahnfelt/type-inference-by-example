@@ -25,7 +25,7 @@ class Lowering(environment : Map[String, GenericType]) {
             if(traits.isEmpty) expression else {
                 val TConstructor(_, parametersAndReturnType) = typeAnnotation.get
                 val parameters = parametersAndReturnType.init.zipWithIndex.map { case (t, i) =>
-                    Parameter("_p" + i, Some(t))
+                    Parameter("_x" + (i + 1), Some(t))
                 }
                 val extraArguments = buildTraitArguments(traits)
                 ELambda(parameters, Some(parametersAndReturnType.last), EApply(
