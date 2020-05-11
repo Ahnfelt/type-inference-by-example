@@ -27,14 +27,14 @@ class Lowering(environment : Map[String, GenericType]) {
                 val parameters = parametersAndReturnType.init.zipWithIndex.map { case (t, i) =>
                     Parameter("_x" + (i + 1), Some(t))
                 }
-                val extraArguments = buildTraitArguments(traits)
+                val (extraArguments, extraArgumentTypes) = buildTraitArguments(traits).unzip
                 ELambda(parameters, Some(parametersAndReturnType.last), EApply(
-                    EVariable(name, generics, traits),
+                    EVariable(name, generics, traits, None),
                     extraArguments ++ parameters.map { p => EVariable(p.name, List(), List(), p.typeAnnotation) }
                 ))
             }
         case e@EApply(EVariable(_, _, traits, _), _) =>
-            val extraArguments = buildTraitArguments(traits)
+            val (extraArguments, extraArgumentTypes) = buildTraitArguments(traits).unzip
             e.copy(arguments = extraArguments ++ e.arguments.map(lower))
         case EApply(function, arguments) =>
             EApply(lower(function), arguments.map(lower))
@@ -54,7 +54,7 @@ class Lowering(environment : Map[String, GenericType]) {
             ESemicolon(lower(before), lower(after))
     }
 
-    private def buildTraitArguments(traits : List[Type]) : List[Expression] = {
+    private def buildTraitArguments(traits : List[Type]) : List[(Expression, Type)] = {
         val inference = new Inference()
         traits.map { p =>
             var newGenerics = List[Type]()
@@ -68,14 +68,14 @@ class Lowering(environment : Map[String, GenericType]) {
                 )
             }
             val newReturnType = inference.substitution.substitute(p)
+            val (arguments, argumentTypes) = buildTraitArguments(newTraits).unzip
             val newType =
-                if(newTraits.isEmpty) newReturnType
-                else TConstructor(s"Function${newTraits.size}", newTraits ++ List(newReturnType))
-            val arguments = buildTraitArguments(newTraits)
+                if(argumentTypes.isEmpty) newReturnType
+                else TConstructor(s"Function${newTraits.size}", argumentTypes ++ List(newReturnType))
             val variable = EVariable(traitKey(p).get, newGenerics, newTraits, Some(newType))
-            if(arguments.isEmpty) variable else {
+            (if(arguments.isEmpty) variable else {
                 EApply(variable, arguments)
-            }
+            }) -> newReturnType
         }
     }
 
