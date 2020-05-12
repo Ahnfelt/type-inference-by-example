@@ -28,14 +28,22 @@ class Lowering(environment : Map[String, GenericType]) {
                     Parameter("_x" + (i + 1), Some(t))
                 }
                 val (extraArguments, extraArgumentTypes) = buildTraitArguments(traits).unzip
+                val newParameterAndReturnTypes = extraArgumentTypes ++ parametersAndReturnType
+                val newTypeAnnotation =
+                    TConstructor(s"Function${newParameterAndReturnTypes.size - 1}", newParameterAndReturnTypes)
                 ELambda(parameters, Some(parametersAndReturnType.last), EApply(
-                    EVariable(name, generics, traits, None),
+                    EVariable(name, generics, traits, Some(newTypeAnnotation)),
                     extraArguments ++ parameters.map { p => EVariable(p.name, List(), List(), p.typeAnnotation) }
                 ))
             }
-        case e@EApply(EVariable(_, _, traits, _), _) =>
+        case EApply(EVariable(name, generics, traits, typeAnnotation), arguments) =>
+            val TConstructor(_, parametersAndReturnType) = typeAnnotation.get
             val (extraArguments, extraArgumentTypes) = buildTraitArguments(traits).unzip
-            e.copy(arguments = extraArguments ++ e.arguments.map(lower))
+            val newParameterAndReturnTypes = extraArgumentTypes ++ parametersAndReturnType
+            val newTypeAnnotation =
+                TConstructor(s"Function${newParameterAndReturnTypes.size - 1}", newParameterAndReturnTypes)
+            val newArguments = extraArguments ++ arguments.map(lower)
+            EApply(EVariable(name, generics, traits, Some(newTypeAnnotation)), newArguments)
         case EApply(function, arguments) =>
             EApply(lower(function), arguments.map(lower))
         case ELet(name, typeAnnotation, value, body) =>

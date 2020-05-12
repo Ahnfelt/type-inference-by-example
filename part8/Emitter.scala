@@ -48,7 +48,7 @@ class Emitter() {
             case c if c >= 'A' && c <= 'Z' => c.toString
             case c if c >= '0' && c <= '9' => c.toString
             case '_' => "_"
-            case c => "_" + c.toInt
+            case c => "_0x" + c.toHexString
         }
     }
 
