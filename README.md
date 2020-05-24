@@ -34,4 +34,4 @@ A series of down-to-earth, code-oriented articles on implementing type inference
 
 I'm Joakim Ahnfelt-Rønne, MSc Computer Science (University of Copenhagen). I work with functional programming in the industry and I co-organize a [meetup](https://www.meetup.com/MoedegruppeFunktionelleKoebenhavnere) about it in Copenhagen. In my spare time, I work on [programming languages](https://github.com/topshell-language/topshell) - and apparently, write about it.
 
-Catch me on https://discord.gg/e3B3hW - it's a very nice community about programming language design. I'm @ahnfelt.
+Catch me on https://discord.gg/4Kjt3ZE - it's a very nice community about programming language design. I'm @ahnfelt.
